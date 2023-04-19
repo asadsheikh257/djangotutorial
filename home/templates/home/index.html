@@ -1,18 +1,20 @@
 {% extends "base.html" %}
 {% block start %}
 
+<style>
+    table, th, td {
+        border:  1px solid black;
+    }
+</style>
+
     <h1>Hey I am Django server</h1>
     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, corporis deserunt id fuga ratione eius facere aut
         blanditiis soluta, it dolores maiores, voluptas sunt dolore. Facilis. </p>
-        <br><br>
-        <a href="/about/">about</a>
-        |
-        <a href="/contact/">contact</a>
 
-        <hr>
+        <br><br><br><br><br>
 
 
-    <table class="table container">
+    <table class="table col-6 mx-auto p-3  shadow-lg">
         <thead>
             <tr>
                 <th>Id</th>
@@ -39,7 +41,7 @@
             {% endfor %}
         </tbody>
     </table>
-    <hr>
+    
     <!-- {% for i in veg %}
     <li></li>
     {% endfor %} -->
