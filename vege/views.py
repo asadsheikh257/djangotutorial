@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import *
+from django.contrib import messages
 
 # Create your views here.
 
@@ -70,6 +71,34 @@ def update_receipe(request, id):
 def login(request):
     context = {'page':"Login"}
     return render(request, 'receipe/login.html', context)
+
 def register(request):
+
+    if request.method == "POST":
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        username = request.POST.get('username')
+        password = request.POST.get('passowrd')
+
+        user = User.objects.filter(username = username)
+
+        if user.exists():
+            messages.error(request, "Username already taken.")
+            return redirect('/register/')
+    
+        user = User.objects.create(
+            first_name = first_name,
+            last_name = last_name,
+            username = username
+        )
+
+        user.set_password(password)
+        user.save()
+
+        messages.info(request, "Account registered successfully")
+
+        return redirect('/register/')
+
+
     context = {'page':"Registation"}
     return render(request, 'receipe/register.html', context)
