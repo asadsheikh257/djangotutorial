@@ -13,8 +13,10 @@
 
         <br><br><br><br><br>
 
+<div class="container">
 
-    <table class="table col-6 mx-auto p-3  shadow-lg">
+    
+    <table class="table table-hover shadow-lg">
         <thead>
             <tr>
                 <th>Id</th>
@@ -41,16 +43,12 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
     
     <!-- {% for i in veg %}
     <li></li>
     {% endfor %} -->
-    {% if 'Saag' in veg %}
-    availabe
-    {% else %}
-    no
-    {% endif %}
-
+   
     <!-- {{veg}} -->
 
 {% endblock %}

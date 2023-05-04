@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block start %}
+
+
+
+
+<div class=" container mt-4">
+
+    <form class=" col-6 mx-auto p-4 m-5 card shadow-lg" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Registation</h2>
+        <hr>
+        <div class="mb-3">
+            <label for="inputPassword2" class="visually-hidden">First_name</label>
+            <input type="text" class="form-control" name="receipe_name" placeholder="First Name" required>
+        </div>
+        <div class="mb-3">
+            <label for="inputPassword2" class="visually-hidden">last_name</label>
+            <input type="text" class="form-control" name="receipe_name" placeholder="Last Name" required>
+        </div>
+        <div class="mb-3">
+            <label for="inputPassword2" class="visually-hidden">Username</label>
+            <input type="text" class="form-control" name="receipe_name" placeholder="Username" required>
+        </div>
+        <div class="mb-3">
+            <label for="inputPassword2" class="visually-hidden">Password</label>
+            <input type="password" class="form-control" name="receipe_name" placeholder="Password" required>
+        </div>
+
+        <p>Already have account <a href="/login/">Login</a></p>
+
+        <button type="submit" class="btn btn-success">Sign up</button>
+
+    </form>
+</div>
+
+
+{% endblock %}
