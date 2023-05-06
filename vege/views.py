@@ -1,14 +1,16 @@
 from django.shortcuts import render, redirect
 from .models import *
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
 # def receipes(request):
 #     return render(request, "receipe/receipes.html")
 
-
-def receipes(request):
+@login_required(login_url="/login/")
+def create_receipes(request):
     context = {'page':'Add-Recepie'}
     if (request.method == "POST"):  
         data = request.POST
@@ -29,6 +31,7 @@ def receipes(request):
 
     return render(request, "receipe/receipes.html", context) 
 
+@login_required(login_url="/login/")
 def show_receipe(request):
     # context = {'page':'Receipe'}
     queryset = Receipe.objects.all() 
@@ -39,11 +42,13 @@ def show_receipe(request):
     context = {'receipes': queryset, 'page':'Receipe'}
     return render(request, 'receipe/show_receipe.html', context)
 
+@login_required(login_url="/login/")
 def delete_receipe(request, id):
     queryset =  Receipe.objects.get(id = id)
     queryset.delete()
     return redirect('/show_receipe/')
 
+@login_required(login_url="/login/")
 def update_receipe(request, id): 
     queryset = Receipe.objects.get(id = id)
     if (request.method == "POST"):
@@ -68,17 +73,39 @@ def update_receipe(request, id):
 
 
 
-def login(request):
+def login_page(request):
     context = {'page':"Login"}
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        if not User.objects.filter(username = username).exists():
+            messages.error(request, "Invalid username")
+            return redirect('/login/')
+        
+        user = authenticate(username = username , password = password)
+
+        if user is None:
+            messages.error(request, "Invalid Password")
+            return redirect('/login/')
+        else:
+            login(request, user)
+            return redirect('/show_receipe/')
+
     return render(request, 'receipe/login.html', context)
 
-def register(request):
+def logout_page(request):
+    logout(request)
+    return redirect('/login/')
+
+def register_page(request):
 
     if request.method == "POST":
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         username = request.POST.get('username')
-        password = request.POST.get('passowrd')
+        password = request.POST.get('password')
 
         user = User.objects.filter(username = username)
 
