@@ -6,7 +6,7 @@
 
 <div class=" container mt-4">
 
-    <form class=" col-6 mx-auto p-4 m-5 card shadow-lg" method="post" enctype="multipart/form-data">
+    <form class=" col-6 mx-auto p-4 mt-5 card shadow-lg" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <h2>Login</h2>
         {% if messages %}
@@ -17,6 +17,7 @@
             {% endfor %}
         </div>
         {% endif %}
+        <hr>
         <div class="mb-3">
             <label for="inputPassword2" class="visually-hidden">Username</label>
             <input type="text" class="form-control" name="username" placeholder="Username" required>
