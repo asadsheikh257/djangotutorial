@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block start %}
+
+<style>
+    table,
+    th,
+    td,
+    thead,
+    tbody {
+        border: 1px solid black;
+    }
+
+    .tables {
+        margin-top: 30px;
+    }
+    form{
+        margin-bottom: 30px;
+    }
+    #studenthome{
+        text-decoration: none;
+    }
+</style>
+
+<div class="container">
+    <a id="studenthome" href="/student/"><h2>Student Details</h2></a>
+</div>
+
+<div class="container mt-5 tables">
+
+        <form class="mb-4">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" placeholder="Search" name="search" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-primary" >Search</button>
+                </div>
+            </div>
+        </form> 
+
+    <table class="table table-stiped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Student Id</th>
+                <th scope="col">Department</th>
+                <th scope="col">Student Name</th>
+                <th scope="col">Student Email</th>
+                <th scope="col">Age</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in queryset %}
+            <tr>
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{ student.student_id }}</td>
+                <td>{{ student.department }} </td>
+                <td>{{ student.student_name }}</td>
+                <td>{{ student.student_email }}</td>
+                <td>{{ student.student_age }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <nav class="Page navigation example">
+        <ul class="pagination">
+            <!-- <span class="step-links"> -->
+                {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page=1">&laquo; first</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">previous</a></li>
+                {% endif %}
+                <li class="page-item">
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                    </span>
+                </li>
+
+                {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a></li>
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></li>
+                {% endif %}
+            <!-- </span> -->
+        </ul>
+    </nav>
+</div>
+
+
+{% endblock %}      

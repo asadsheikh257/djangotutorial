@@ -2,42 +2,44 @@
 {% block start %}
 
 <style>
-    .btn{
+    /* .btn{
         background-color: #5593f7;
+    } */
+    .box {
+        margin: 30px;
+    }
+
+    .search {
+        margin-bottom: 30px;
+    }
+    #receipehome{
+        text-decoration: none;
     }
 </style>
 
 
-<div class="container mt-5"   >
+<div class="container box ">
     <div class="row">
         <div class="col-md-10">
-            <h2>Receipe Details</h2>
+            <a id="receipehome" href="/show_receipe/"><h2>Receipe Details</h2></a>
         </div>
         <div class="col-md-2 end">
-            <a class="btn btn-success" href="/receipes/">Add Receipe</a>
+            <a class="btn btn-primary" href="/receipes/">Add Receipe</a>
         </div>
 
     </div>
 </div>
 
-<div class=" mt-5 ">
-    <div class=" box mx-auto col-6">
-
-        <!-- <div class="mx-auto col-6">
-            <form class="card shadow-lg p-4">
-            <div class="mb-3">
-                <label for="inputPassword2" class="form-label">Search Food</label>
-                <input type="text" class="form-control" name="search">
-            </div>
-            <button class="btn btn-primary" type="submit">Search</button>
-        </form>
-    </div> -->
-    <form action="" class="form-inline">
-        <input type="text" class="form-control" placeholder="Search" name="search">
-        <button class="btn btn-success" type="submit">Search</button>
-    </form>
-</div>
-</div>
+<form class="container mb-4">
+    <div class="row search">
+        <div class="col-md-6">
+            <input type="text" placeholder="Search" name="search" class="form-control">
+        </div>
+        <div class="col-md-6">
+            <button class="btn btn-primary">Search</button>
+        </div>
+    </div>
+</form>
 
 <div class="container mt-5 mb-2">
     <div class="row">
@@ -68,7 +70,7 @@
                                 <a href="/delete_receipe/{{receipe.id}}/" class="btn btn-danger">X</a>
                             </div>
                             <div class="m-2">
-                                <a href="/update_receipe/{{receipe.id}}/" class="btn btn-success">/</a>
+                                <a href="/update_receipe/{{receipe.id}}/" class="btn btn-primary">/</a>
                             </div>
                         </td>
                     </tr>
